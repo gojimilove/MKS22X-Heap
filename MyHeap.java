@@ -10,7 +10,7 @@ public class MyHeap {
         data[i] = data[i*2+2];
         data[i*2+2] = temp;
         i = i*2+2;
-        System.out.println(printArray(data));
+        //System.out.println(printArray(data));
       }
       //else (only one child, c1 is bigger, or c1 == c2) swap with 1
       else {
@@ -18,12 +18,24 @@ public class MyHeap {
         data[i] = data[i*2+1];
         data[i*2+1] = temp;
         i = i*2+1;
-        System.out.println(printArray(data));
+        //System.out.println(printArray(data));
       }
     }
   }
 
-  private static void pushUp(int[]data,int index) {}
+  private static void pushUp(int[]data,int index) {
+  	int i = index;
+  	//push up until either at the top or when parent is bigger
+  	while ((i-1)/2 >= 0 && i > 0) {
+  	  if (data[(i-1)/2] < data[i]) {
+  		int temp = data[i];
+	    data[i] = data[(i-1)/2];
+	    data[(i-1)/2] = temp;
+	    i = (i-1)/2;
+	    System.out.println(printArray(data));
+  	  }
+  	}
+  }
 
   public static void heapify(int[] data) {}
 
@@ -40,12 +52,20 @@ public class MyHeap {
   }
 
   public static void main(String[] args) {
-    int[] data = new int[]{19, 100, 136, 17, 20, 25, 1, 2, 7, 3};
+    // int[] data = new int[]{19, 100, 136, 17, 20, 25, 1, 2, 7, 3};
 
+    // System.out.print("ORIGINAL: ");
+    // System.out.println(printArray(data));
+
+    // pushDown(data, data.length, 0);
+
+    // System.out.print("FINAL: ");
+    // System.out.println(printArray(data));
+    int[] data = new int[]{100, 19, 36, 17, 3, 25, 1, 2, 200};
     System.out.print("ORIGINAL: ");
     System.out.println(printArray(data));
 
-    pushDown(data, data.length, 0);
+    pushUp(data, 8);
 
     System.out.print("FINAL: ");
     System.out.println(printArray(data));
