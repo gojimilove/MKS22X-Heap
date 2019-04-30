@@ -1,19 +1,22 @@
 public class MyHeap {
   private static void pushDown(int[]data,int size,int index) {
     //preconditions: index is between 0 and size-1 (inclusive), size is between 0 and data.length-1 (inclusive)
+    int i = index;
     //make sure it has at least one child
-    if (index*2+1 < size || index*2+2 < size) {
+    if (i*2+1 < size || i*2+2 < size) {
       //if there's more than one child and c2 is bigger than c1 swap with 2
-      if (index*2+2 < size && data[index*2+2] > data[index*2+1]) {
-        int temp = data[index];
-        data[index] = data[index*2+2];
-        data[index*2+2] = temp;
+      if (i*2+2 < size && data[i*2+2] > data[i*2+1]) {
+        int temp = data[i];
+        data[i] = data[i*2+2];
+        data[i*2+2] = temp;
+        i = i*2+1;
       }
       //else (only one child, c1 is bigger, or c1 == c2) swap with 1
       else {
-        int temp = data[index];
-        data[index] = data[index*2+1];
-        data[index*2+1] = temp;
+        int temp = data[i];
+        data[i] = data[i*2+1];
+        data[i*2+1] = temp;
+        i = i*2;
       }
     }
   }
