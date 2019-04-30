@@ -9,14 +9,16 @@ public class MyHeap {
         int temp = data[i];
         data[i] = data[i*2+2];
         data[i*2+2] = temp;
-        i = i*2+1;
+        i = i*2+2;
+        System.out.println(printArray(data));
       }
       //else (only one child, c1 is bigger, or c1 == c2) swap with 1
       else {
         int temp = data[i];
         data[i] = data[i*2+1];
         data[i*2+1] = temp;
-        i = i*2;
+        i = i*2+1;
+        System.out.println(printArray(data));
       }
     }
   }
@@ -27,23 +29,25 @@ public class MyHeap {
 
   public static void heapsort(int[] data) {}
 
+  public static String printArray(int[] data) {
+  	String s = "[";
+	for (int i = 0; i < data.length; i++) {
+      s+= data[i];
+      if (i < data.length-1) s+= ", ";
+    }
+    s+= "]\n";
+    return s;
+  }
+
   public static void main(String[] args) {
-    int[] data = new int[]{8, 4, 17, 9, 0, 7, 12};
+    int[] data = new int[]{19, 100, 136, 17, 20, 25, 1, 2, 7, 3};
 
-    System.out.print("[");
-    for (int i = 0; i < data.length; i++) {
-      System.out.print(data[i]);
-      if (i < data.length-1) System.out.print(", ");
-    }
-    System.out.print("}\n\n");
+    System.out.print("ORIGINAL: ");
+    System.out.println(printArray(data));
 
-    pushDown(data, 7, 0);
+    pushDown(data, data.length, 0);
 
-    System.out.print("[");
-    for (int i = 0; i < data.length; i++) {
-      System.out.print(data[i]);
-      if (i < data.length-1) System.out.print(", ");
-    }
-    System.out.print("]\n\n");
+    System.out.print("FINAL: ");
+    System.out.println(printArray(data));
   }
 }
