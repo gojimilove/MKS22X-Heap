@@ -3,7 +3,7 @@ public class MyHeap {
     //preconditions: index is between 0 and size-1 (inclusive), size is between 0 and data.length-1 (inclusive)
     int i = index;
     //make sure it has at least one child
-    if (i*2+1 < size || i*2+2 < size) {
+    while (i*2+1 < size || i*2+2 < size) {
       //if there's more than one child and c2 is bigger than c1 swap with 2
       if (i*2+2 < size && data[i*2+2] > data[i*2+1]) {
         int temp = data[i];
@@ -35,7 +35,7 @@ public class MyHeap {
       System.out.print(data[i]);
       if (i < data.length-1) System.out.print(", ");
     }
-    System.out.print("[\n\n");
+    System.out.print("}\n\n");
 
     pushDown(data, 7, 0);
 
