@@ -2,8 +2,8 @@ public class MyHeap {
   private static void pushDown(int[]data,int size,int index) {
     //preconditions: index is between 0 and size-1 (inclusive), size is between 0 and data.length-1 (inclusive)
     int i = index;
-    //make sure it has at least one child
-    while (i*2+1 < size || i*2+2 < size) {
+    //push down if it has at least one child and is smaller than one of them (if 2 even exists)
+    while ((i*2+1 < size || i*2+2 < size) && ((data[i] < data[i*2+1]) || (i*2+2 < size && data[i] < data[i*2+2]))) {
       //if there's more than one child and c2 is bigger than c1 swap with 2
       if (i*2+2 < size && data[i*2+2] > data[i*2+1]) {
         int temp = data[i];
@@ -32,12 +32,20 @@ public class MyHeap {
 	    data[i] = data[(i-1)/2];
 	    data[(i-1)/2] = temp;
 	    i = (i-1)/2;
-	    System.out.println(printArray(data));
+	    //System.out.println(printArray(data));
   	  }
   	}
   }
 
-  public static void heapify(int[] data) {}
+  public static void heapify(int[] data) {
+  	//push each element down into place
+  	for (int i = 0; i < data.length-1; i++) {
+  		System.out.println(data[i]+"\n");
+  		pushDown(data, data.length, i);
+
+  		System.out.println(printArray(data));
+  	}
+  }
 
   public static void heapsort(int[] data) {}
 
@@ -52,6 +60,7 @@ public class MyHeap {
   }
 
   public static void main(String[] args) {
+    // TESTING PUSHDOWN
     // int[] data = new int[]{19, 100, 136, 17, 20, 25, 1, 2, 7, 3};
 
     // System.out.print("ORIGINAL: ");
@@ -61,11 +70,23 @@ public class MyHeap {
 
     // System.out.print("FINAL: ");
     // System.out.println(printArray(data));
-    int[] data = new int[]{100, 19, 36, 17, 3, 25, 1, 2, 200};
+
+    // TESTING PUSHUP
+    // int[] data = new int[]{100, 19, 36, 17, 3, 25, 1, 2, 200};
+    // System.out.print("ORIGINAL: ");
+    // System.out.println(printArray(data));
+
+    // pushUp(data, 8);
+
+    // System.out.print("FINAL: ");
+    // System.out.println(printArray(data));
+
+    // TESTING PUSHUP
+    int[] data = new int[]{8, 4, 17, 9, 0, 7, 12};
     System.out.print("ORIGINAL: ");
     System.out.println(printArray(data));
 
-    pushUp(data, 8);
+    heapify(data);
 
     System.out.print("FINAL: ");
     System.out.println(printArray(data));
