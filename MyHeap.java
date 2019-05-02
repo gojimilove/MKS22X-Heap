@@ -39,10 +39,10 @@ public class MyHeap {
 
   public static void heapify(int[] data) {
   	//push each element down into place
-  	for (int i = 0; i < data.length-1; i++) {
-  		//System.out.println("Push down: "+data[i]+"\n");
-  		pushDown(data, data.length, i);
-  		//System.out.println(printArray(data));
+  	for (int i = data.length-1; i >-1; i--) {
+  	  //System.out.println("Push down: "+data[i]+"\n");
+  	  pushDown(data, data.length, i);
+  	  //System.out.println(printArray(data));
   	}
   }
 
@@ -56,7 +56,7 @@ public class MyHeap {
   	
   	int size = data.length;
   	int temp = 0;
-  	while (size > 1) { // when there's only one left it has to be sorted
+  	while (size > 0) { // when there's only one left it has to be sorted
   		// swap first and last values (moves biggest to end)
   		//System.out.print(data[0]+" at end: ");
 	  	temp = data[0];
@@ -116,7 +116,17 @@ public class MyHeap {
     // printArray(data);
 
     //TESTING HEAPSORT
-    // int[] data = new int[]{8, 4, 17, 9, 0, 7, 12};
-    // heapsort(data);
+    int[] data = new int[]{9,4,5,7,8,2,34,6,8,3,56,65};
+    printArray(data);
+    heapify(data);
+    printArray(data);
+    // pushDown(data, data.length, 1);
+    // printArray(data);
+    // pushDown(data, data.length, 2);
+    // printArray(data);
+    // pushDown(data, data.length, 0);
+    // printArray(data);
+    // pushDown(data, data.length, 0);
+    // printArray(data);
   }
 }
