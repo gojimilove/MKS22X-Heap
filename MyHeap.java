@@ -116,17 +116,9 @@ public class MyHeap {
     // printArray(data);
 
     //TESTING HEAPSORT
-    int[] data = new int[]{9,4,5,7,8,2,34,6,8,3,56,65};
-    printArray(data);
-    heapify(data);
-    printArray(data);
-    // pushDown(data, data.length, 1);
+    // int[] data = new int[]{9,4,5,7,8,2,34,6,8,3,56,65};
     // printArray(data);
-    // pushDown(data, data.length, 2);
-    // printArray(data);
-    // pushDown(data, data.length, 0);
-    // printArray(data);
-    // pushDown(data, data.length, 0);
+    // heapsort(data);
     // printArray(data);
   }
 }
