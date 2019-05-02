@@ -40,23 +40,45 @@ public class MyHeap {
   public static void heapify(int[] data) {
   	//push each element down into place
   	for (int i = 0; i < data.length-1; i++) {
-  		System.out.println(data[i]+"\n");
+  		//System.out.println("Push down: "+data[i]+"\n");
   		pushDown(data, data.length, i);
-
-  		System.out.println(printArray(data));
+  		//System.out.println(printArray(data));
   	}
   }
 
-  public static void heapsort(int[] data) {}
+  public static void heapsort(int[] data) {
+  	System.out.print("original array: ");
+  	printArray(data);
+  	heapify(data);
+  	System.out.print("good heap: ");
+  	printArray(data);
 
-  public static String printArray(int[] data) {
+  	//swap first and last values (moves biggest to end)
+  	int size = data.length;
+  	int temp = 0;
+  	while (size > 1) {
+  		System.out.print(data[0]+" at end: ");
+	  	temp = data[0];
+	  	data[0] = data[size-1];
+	  	data[size-1] = temp;
+	  	
+	  	printArray(data);
+	  	size--;
+	  	System.out.println("SIZE: "+size+"\n");
+	  	System.out.print(data[0]+" pushed down: ");
+	  	pushDown(data, size, 0);
+	  	printArray(data);
+	 }
+  }
+
+  public static void printArray(int[] data) {
   	String s = "[";
 	for (int i = 0; i < data.length; i++) {
       s+= data[i];
       if (i < data.length-1) s+= ", ";
     }
     s+= "]\n";
-    return s;
+    System.out.println(s);
   }
 
   public static void main(String[] args) {
@@ -81,14 +103,18 @@ public class MyHeap {
     // System.out.print("FINAL: ");
     // System.out.println(printArray(data));
 
-    // TESTING PUSHUP
+    // TESTING HEAPIFY
+    // int[] data = new int[]{8, 4, 17, 9, 0, 7, 12};
+    // System.out.print("ORIGINAL: ");
+    // printArray(data);
+
+    // heapify(data);
+
+    // System.out.print("FINAL: ");
+    // printArray(data);
+
+    //TESTING HEAPSORT
     int[] data = new int[]{8, 4, 17, 9, 0, 7, 12};
-    System.out.print("ORIGINAL: ");
-    System.out.println(printArray(data));
-
-    heapify(data);
-
-    System.out.print("FINAL: ");
-    System.out.println(printArray(data));
+    heapsort(data);
   }
 }
