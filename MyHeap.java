@@ -47,27 +47,29 @@ public class MyHeap {
   }
 
   public static void heapsort(int[] data) {
-  	System.out.print("original array: ");
-  	printArray(data);
+  	// heapify the array first
+  	//System.out.print("original array: ");
+  	//printArray(data);
   	heapify(data);
-  	System.out.print("good heap: ");
-  	printArray(data);
-
-  	//swap first and last values (moves biggest to end)
+  	//System.out.print("good heap: ");
+  	//printArray(data);
+  	
   	int size = data.length;
   	int temp = 0;
-  	while (size > 1) {
-  		System.out.print(data[0]+" at end: ");
+  	while (size > 1) { // when there's only one left it has to be sorted
+  		// swap first and last values (moves biggest to end)
+  		//System.out.print(data[0]+" at end: ");
 	  	temp = data[0];
 	  	data[0] = data[size-1];
 	  	data[size-1] = temp;
-	  	
-	  	printArray(data);
-	  	size--;
-	  	System.out.println("SIZE: "+size+"\n");
-	  	System.out.print(data[0]+" pushed down: ");
+	  	//printArray(data);
+	  	size--; // value at the end already sorted, don't need to worry about it anymore
+	  	//System.out.println("SIZE: "+size+"\n");
+
+	  	// push down value at the front so we get max on top again
+	  	//System.out.print(data[0]+" pushed down: ");
 	  	pushDown(data, size, 0);
-	  	printArray(data);
+	  	//printArray(data);
 	 }
   }
 
@@ -114,7 +116,7 @@ public class MyHeap {
     // printArray(data);
 
     //TESTING HEAPSORT
-    int[] data = new int[]{8, 4, 17, 9, 0, 7, 12};
-    heapsort(data);
+    // int[] data = new int[]{8, 4, 17, 9, 0, 7, 12};
+    // heapsort(data);
   }
 }
